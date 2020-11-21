@@ -1,0 +1,15 @@
+APP=erf
+OBJECTS=erf.o test.o
+CFLAGS=-Wall -g -pg
+LDLIBS=`pkg-config --cflags gsl libxml-2.0`
+CC=c99
+
+all: clean $(APP)
+
+$(APP): $(OBJECTS) 
+	$(CC) $(OBJECTS) $(CFLAGS) $(LDLIBS) -o $@
+
+.PHONY: clean
+
+clean:
+	rm -rf *.o $(APP)
